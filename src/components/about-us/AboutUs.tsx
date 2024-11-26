@@ -3,7 +3,7 @@ import AboutUsImg from "@/../../public/image/aboutus.jpg";
 
 export default function AboutUs() {
   return (
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div className="w-full max-w-7xl px-4 md:px-5 lg:px-5 mx-auto">
       <div className="mt-24 grid grid-cols-1 items-center gap-14 sm:mt-32 lg:mt-40 lg:grid-cols-2">
         <div className="mx-auto flex max-w-3xl flex-col gap-8">
           <span className="text-lg font-medium text-neutral-800 dark:text-neutral-200">
