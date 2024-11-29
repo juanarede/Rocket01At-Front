@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
-import Logo from "@/../../public/image/Logo.png";
+import Logo from '@/../../public/image/Logo.png';
 import Image from 'next/image';
 
 import DesktopMenu from './DesktopMenu';
@@ -10,12 +10,11 @@ import Sidebar from './Sidebar';
 const links = [
   { href: '#', label: 'Inicio', delay: 100 },
   { href: '#', label: 'Sobre Nosotros', delay: 200 },
-  { href: '#', label: 'Contáctanos', delay: 300 },
 ];
 
 export default function Navbar() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
-  const [linksVisible, setLinksVisible] = useState([false, false, false]);
+  const [linksVisible, setLinksVisible] = useState([false, false]);
   const [isScrolled, setIsScrolled] = useState(false);
 
   const toggleSidebar = () => {
@@ -36,26 +35,28 @@ export default function Navbar() {
   useEffect(() => {
     if (isSidebarOpen) {
       links.forEach((_, index) => {
-        setTimeout(() => setLinksVisible((prev) => {
-          const newVisibility = [...prev];
-          newVisibility[index] = true;
-          return newVisibility;
-        }), (index + 1) * 100);
+        setTimeout(() => {
+          setLinksVisible((prev) => {
+            const newVisibility = [...prev];
+            newVisibility[index] = true;
+            return newVisibility;
+          });
+        }, (index + 1) * 100);
       });
     } else {
-      setLinksVisible([false, false, false]);
+      setLinksVisible([false, false]);
     }
   }, [isSidebarOpen]);
 
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-          isScrolled
-            ? 'bg-white/0.7 backdrop-blur-md shadow-md'
-            : 'bg-transparent'
-        }`}
-      >
+  className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+    isScrolled ? 'bg-white/0.7 backdrop-blur-md shadow-md' : 'bg-transparent'
+  }`}
+  style={{ height: '120px' }} // Define la altura del Navbar
+>
+
         <div className="w-full max-w-7xl px-4 md:px-5 lg:px-5 mx-auto">
           <div className="flex justify-between items-center">
             {/* Logo */}
@@ -74,8 +75,25 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Sidebar móvil */}
-      <Sidebar isOpen={isSidebarOpen} links={links} linksVisible={linksVisible} toggleSidebar={toggleSidebar} />
+      {/* Sidebar móvil con botón adicional */}
+      <Sidebar
+        isOpen={isSidebarOpen}
+        links={links}
+        linksVisible={linksVisible}
+        toggleSidebar={toggleSidebar}
+        extraContent={
+          <button
+            type="button"
+            className="text-white bg-gradient-to-r from-[#ffcc29] to-[#ff7b54] hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-white font-medium rounded-lg text-5xl px-5 py-2.5 text-center w-full zuume-font"
+            style={{
+              backgroundSize: '100% 300%',
+              transition: 'background-position 2s ease-in-out',
+            }}
+          >
+            Registrar
+          </button>
+        }
+      />
     </>
   );
 }

@@ -1,32 +1,26 @@
 'use client';
 
-import { useEffect } from 'react';
+
 import Image from 'next/image';
 import Image1 from '@/../../public/image/image1.png';
 import Image2 from '@/../../public/image/image2.png';
-import AOS from 'aos';
-import 'aos/dist/aos.css'; // Importa los estilos de AOS
+import 'aos/dist/aos.css'; 
+import useAOS from '@/components/hooks/useAos'; 
 
 export default function Header() {
-  useEffect(() => {
-    AOS.init({
-      duration: 1500, // Duración de la animación (aumentada)
-      easing: 'ease-out', // Suavizado para que la animación fluya
-      once: true, // Solo se ejecuta una vez
-    });
-  }, []);
+  useAOS({ duration: 1200, easing: 'ease-out', once: true }); 
 
   return (
-    <section style={{ marginTop: '10rem' }}>
+    <section style={{ marginTop: '120px' }}>
       <div className="w-full max-w-7xl px-4 md:px-5 lg:px-5 mx-auto">
         <div className="w-full justify-start items-center gap-12 grid lg:grid-cols-2 grid-cols-1">
           {/* Texto a la izquierda */}
           <div
             className="w-full flex-col justify-center lg:items-start items-center gap-10 inline-flex lg:order-first order-last"
-            data-aos="zoom-in"
+            data-aos="zoom-in-up"
             data-aos-delay="200"
             style={{
-              transition: 'all 1.5s ease-out',
+              transition: 'all 0.1s ease-out',
             }}
           >
             <div className="w-full flex-col justify-center items-start gap-8 flex">
@@ -42,7 +36,7 @@ export default function Header() {
                     backgroundSize: '300% 100%',
                     WebkitBackgroundClip: 'text',
                     color: 'transparent',
-                    transition: 'color 2s ease-in-out',
+                    transition: 'color 0.2s ease-in-out',
                   }}
                 >
                   Tu Idea Conviertela en tu negocio
@@ -76,9 +70,9 @@ export default function Header() {
               className="relative animate-fadeUp delay-3"
               href="#"
               data-aos="flip-left"
-              data-aos-delay="1500"
+              data-aos-delay="1000"
               style={{
-                transition: 'transform 0.5s ease-in-out, background-color 0.5s ease',
+                transition: 'transform 1s ease-in-out, background-color 0.5s ease',
               }}
             >
               <span className="absolute top-0 left-0 mt-1 ml-1 h-full w-full rounded bg-black"></span>
@@ -98,9 +92,9 @@ export default function Header() {
               width={500}
               height={300}
               data-aos="fade-up" // Animación para la primera imagen (subiendo)
-              data-aos-delay="1600" // Retraso para que la primera imagen salga primero
+              data-aos-delay="1000" // Retraso para que la primera imagen salga primero
               style={{
-                transition: 'transform 0.4s ease-in-out', // Transición para la imagen
+                transition: 'transform 0.5s ease-in-out', // Transición para la imagen
               }}
             />
             <Image
@@ -113,7 +107,7 @@ export default function Header() {
               data-aos="fade-up" // Animación para la segunda imagen
               data-aos-delay="2000" // Retraso mayor para que salga después de la primera
               style={{
-                transition: 'transform 0.5s ease-in-out',
+                transition: 'transform 0.6s ease-in-out',
               }}
             />
           </div>
